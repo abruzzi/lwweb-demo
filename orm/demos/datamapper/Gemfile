@@ -1,0 +1,8 @@
+source 'http://ruby.taobao.org'
+
+gem 'datamapper'
+
+group :test, :development do
+    gem 'sqlite3'
+    gem 'dm-sqlite-adapter'
+end

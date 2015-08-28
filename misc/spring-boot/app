@@ -1,0 +1,6 @@
+#!/bin/bash
+
+GID=$1
+APP=$2
+
+mvn archetype:generate -DgroupId=$GID -DartifactId=$APP -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false --settings ~/.m2/normal-settings.xml

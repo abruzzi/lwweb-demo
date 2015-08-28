@@ -1,0 +1,8 @@
+source "http://ruby.taobao.org"
+
+gem 'sinatra'
+
+group :test do
+    gem 'rack-test'
+    gem 'ZenTest'
+end

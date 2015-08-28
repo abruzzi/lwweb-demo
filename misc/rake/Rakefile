@@ -1,0 +1,36 @@
+namespace :myapp do
+  desc "start nginx on port 80"
+  task :start_nginx do
+      puts "start nginx on port 80"
+  end
+
+  desc "connect to database"
+  task :connect_db, [:db_type] do |t, args|
+      args.with_defaults(:db_type => "MYSQL")
+      puts "connect database #{args.db_type}"
+  end
+
+  desc "launch the application"
+  task :run => [:start_nginx, :connect_db] do
+      puts "launch application"
+  end
+
+  desc "generate nginx configure file"
+  file 'nginx.conf' => ['nginx.conf.templ', 'nginx.yaml'] do
+    puts "combine template and yaml together"
+  end
+
+  templates_files = FileList['templates/*.haml']
+  all_in_one = 'all_in_one.haml'
+
+  templates_files.each do |template|
+    file all_in_one => template do
+      puts "combine #{template} into #{all_in_one}"
+    end
+  end
+  
+end
+
+task :default => "myapp:run" do
+  puts "Default task here"
+end

@@ -1,0 +1,28 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.require_version ">= 1.5.0"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.hostname = "liked-berkshelf"
+
+  # Set the version of chef to install using the vagrant-omnibus plugin
+  config.omnibus.chef_version = "11.10.4"
+
+  config.vm.box = "precise64"
+  config.vm.network "private_network", :ip => "192.168.2.105"
+
+  # Enabling the Berkshelf plugin. To enable this globally, add this configuration
+  # option to your ~/.vagrant.d/Vagrantfile file
+  config.berkshelf.enabled = true
+
+
+  config.vm.provision :chef_solo do |chef|
+    chef.run_list = [
+        "recipe[liked::default]"
+    ]
+  end
+end

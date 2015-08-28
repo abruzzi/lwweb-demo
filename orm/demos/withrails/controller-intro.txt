@@ -1,0 +1,5 @@
+Controllers are typically used to store and represent model data and attributes. They act like a proxy, giving you access to the model's attributes and allowing templates to access them to dynamically render the display. This is why a template will always be connected to a controller.
+
+The main thing to remember is that, while a model retrieves data, a controller is what you'll use to programmatically expose that data to different parts of your application. While it may seem that models and controllers are tightly coupled, in fact, models, themselves, have no knowledge of the controllers that will use them later on.
+
+You can also store other application properties that need to persist but don't need to be saved to a server.

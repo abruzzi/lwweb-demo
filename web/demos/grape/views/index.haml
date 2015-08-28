@@ -1,0 +1,9 @@
+!!!
+%html
+	%head
+		%title The index page of Sinatra demo
+	%body
+		%img{:src => '/images/logo.png'}
+		%h2 Hello, I'm the index page of Sinatra demo
+		%div
+			%h3== Hello #{@user[:name]}, from #{@user[:address]}

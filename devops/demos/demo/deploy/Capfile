@@ -1,0 +1,18 @@
+# Load DSL and Setup Up Stages
+require 'capistrano/setup'
+
+# Includes default deployment tasks
+require 'capistrano/deploy'
+
+require 'capistrano/bundler'
+
+require 'capistrano/rbenv'
+
+require 'capistrano/console'
+
+set :rbenv_type, :system
+set :rbenv_ruby, '1.9.3-p194'
+set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+set :rbenv_map_bins, %w{rake gem bundle ruby}
+set :rbenv_roles, :all
+set :rbenv_custom_path, "/opt/rbenv"

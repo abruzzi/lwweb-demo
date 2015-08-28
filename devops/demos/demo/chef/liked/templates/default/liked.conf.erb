@@ -1,0 +1,36 @@
+# use the socket we configured in our unicorn.rb
+upstream unicorn_server {
+  server unix:<%= node['liked']['app_root'] %>/current/tmp/sockets/unicorn.sock
+  fail_timeout=0;
+}
+
+# configure the virtual host
+server {
+  # replace with your domain name
+  server_name _;
+
+  # replace this with your static Sinatra app files, root + public
+  root <%= node['liked']['app_root'] %>/current;
+
+  # port to listen for requests on
+  listen 9527;
+
+  # maximum accepted body size of client request
+  client_max_body_size 4M;
+
+  # the server will close connections after this time
+  keepalive_timeout 5;
+
+  location / {
+    try_files $uri @app;
+  }
+
+  location @app {
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_redirect off;
+
+    # pass to the upstream unicorn server mentioned above
+    proxy_pass http://unicorn_server;
+  }
+}

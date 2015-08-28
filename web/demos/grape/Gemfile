@@ -1,0 +1,12 @@
+source "http://ruby.taobao.org"
+
+gem 'activerecord'
+gem 'grape'
+gem 'grape-swagger'
+
+group :development, :test do
+	gem 'sqlite3'
+end
+
+gem 'sinatra'
+gem 'haml'

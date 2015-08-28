@@ -1,0 +1,12 @@
+[{
+    "name": "JavaScript Core Concepts and Practices",
+    "author": "Juntao Qiu",
+    "keywords": ["JavaScript", "Node.js"]
+}, {
+    "name": "The Quick Python Book",
+    "author": "Naomi R. Ceder"
+}, {
+    "name": "Refactoring",
+    "author": "Martin Fowler",
+    "keywords": ["Aigle", "Clean code", "Refactoring"]
+}]
